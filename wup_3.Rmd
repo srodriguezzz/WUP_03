@@ -30,6 +30,8 @@ basicCN <- ggplot(davisdata,aes(y=alcohol,x=Seat))
 ```{r}
 basicCN + geom_boxplot()
 ```
+
+
 The box plot shows that people who sit in the back seem to consume more alcohol than those who sit in the front.   
 
 ### get fancy  
@@ -38,20 +40,26 @@ The box plot shows that people who sit in the back seem to consume more alcohol 
 basicCN + geom_boxplot(notch=TRUE,outlier.color = "red") + stat_boxplot(geom ='errorbar') + labs(title="Fancy notch boxplot \n with 2 lines")
 ```
 
+This plot shows that those who sit in the front do not consume as much alcohol as those who sit in the back of the class.
+
 ## Numerical Summarys 
 
 ```{r}
 favstats(alcohol~Seat,data=ucdavis1)
 ```
 
+This table set shows us just how much more those who sit in the back consume alcohol than those who sit in the front and middle. When given the actual numbers, like those shown in the 'Q3' and 'max' column, it really shows the difference in alcohol consumption between the different seating areas. 
 
 ## Inferential Tests
 
-```{r}
-model1 <- aov(alcohol~Seat,data=davisdata)
-summary.aov(model1)
+
+``````{r}
+plot(TukeyHSD(model1))
 ```
+
+
+The turkey test shows that the front and middle are below the median in alcohol consumption compared to what the middle-back would be.
 
 ## Conclusions
 
-
+First we got a p value of 0.000116 so we conclude that we reject the null hypothesis. There is a difference in alcohol consumption based on where one sits. The back consumed much more than the middle or front did. 
