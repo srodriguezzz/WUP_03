@@ -53,12 +53,13 @@ This table set shows us just how much more those who sit in the back consume alc
 ## Inferential Tests
 
 
-``````{r}
-plot(TukeyHSD(model1))
+```{r}
+model1 <- aov(alcohol~Seat,data=davisdata)
+summary.aov(model1)
 ```
 
 
-The turkey test shows that the front and middle are below the median in alcohol consumption compared to what the middle-back would be.
+This test shows that the front and middle are below the median in alcohol consumption compared to what the middle-back would be.
 
 ## Conclusions
 
